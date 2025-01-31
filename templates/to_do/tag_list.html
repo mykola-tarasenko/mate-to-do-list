@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Tag list
+    <a href="{% url 'to-do:tag-create' %}" class="btn btn-primary">
+      Create
+    </a>
+  </h1>
+
+  {% if tag_list %}
+    <table class="table">
+      <tr>
+        <th>Name</th>
+      </tr>
+
+      {% for tag in tag_list %}
+        <tr>
+          <td>
+            {{ tag.name }}
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>There are no tags in the service.</p>
+  {% endif %}
+{% endblock %}

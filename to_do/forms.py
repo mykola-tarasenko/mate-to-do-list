@@ -13,9 +13,9 @@ class TaskForm(forms.ModelForm):
         model = Task
         fields = ("content", "deadline", "is_done")
         widgets = {
-            "deadline": forms.DateInput(
+            "deadline": forms.DateTimeInput(
                 attrs={
-                    "type": "date",
+                    "type": "datetime-local",
                     "class": "form-control",
                 }
             ),
