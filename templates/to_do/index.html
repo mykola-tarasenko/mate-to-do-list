@@ -1,18 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>TODO list</h1>
-  {% if tasks %}
-    <ul>
-      {% for task in tasks %}
-        <li>
-          <h2>{{ task.content }} | {{ task.is_done }}</h2>
-          <p>Created: {{ task.created_at }}</p>
-          <p>Tags: {% for tag in task.tags %}{{tag}} {% endfor %}</p>
-        </li>
-      {% endfor %}
-    </ul>
-  {% else %}
+  <h1>
+    TODO list
+    <a href="{% url 'to-do:task-create' %}" class="btn btn-primary">
+      Create
+    </a>
+  </h1>
+  {% for task in task_list %}
+    <h2>{{ task.content }} | {% if task.is_done %} <span style="color: green;">Done</span> {% else %} <span style="color: red;">Not done</span> {% endif %}</h2>
+    <p>Created: {{ task.created_at }}</p>
+    <p>Tags: {% if tag_list %}{% for tag in task.tags %}{{tag}} {% endfor %}{% else %} - {% endif %}</p>
+    <hr>
+  {% empty %}
     <p>There are no tasks yet.</p>
-  {% endif %}
+  {% endfor %}
 {% endblock %}
