@@ -10,7 +10,11 @@
   {% for task in task_list %}
     <h2>{{ task.content }} | {% if task.is_done %} <span style="color: green;">Done</span> {% else %} <span style="color: red;">Not done</span> {% endif %}</h2>
     <p>Created: {{ task.created_at }} {% if task.deadline %} <span style="color: brown;">Deadline: {{ task.deadline }}</span> {% endif %}</p>
-    <p>Tags: {% for tag in task.tags.all %} {{ tag }} {% empty %} - {% endfor %} <a href="{% url 'to-do:task-update' pk=task.id %}">Update</a></p>
+    <p>
+      Tags: {% for tag in task.tags.all %} {{ tag }} {% empty %} - {% endfor %}
+      <a href="{% url 'to-do:task-update' pk=task.id %}">Update</a> |
+      <a href="{% url 'to-do:task-delete' pk=task.id %}">Delete</a>
+    </p>
     <hr>
   {% empty %}
     <p>There are no tasks yet.</p>

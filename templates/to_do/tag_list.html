@@ -13,6 +13,7 @@
       <tr>
         <th>Name</th>
         <th>Update</th>
+        <th>Delete</th>
       </tr>
 
       {% for tag in tag_list %}
@@ -22,6 +23,9 @@
           </td>
           <td>
             <a href="{% url 'to-do:tag-update' pk=tag.id %}">Update</a>
+          </td>
+          <td>
+            <a href="{% url 'to-do:tag-delete' pk=tag.id %}">Delete</a>
           </td>
         </tr>
       {% endfor %}
